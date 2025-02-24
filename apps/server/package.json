@@ -16,6 +16,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@bytemart/database": "workspace:*",
+    "@bytemart/typescript-config": "workspace:*",
     "@biomejs/biome": "^1.9.4",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.0",

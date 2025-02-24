@@ -1,12 +1,19 @@
 {
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  }
+    "extend": "@repo/typscript-config/base.json",
+    "include": [
+        "src/**/*.ts", 
+    ],
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "module": "NodeNext",
+        "moduleResolution" : "NodeNext",
+    },
+
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }
