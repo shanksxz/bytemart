@@ -1,7 +1,7 @@
+import { checkDatabaseConnection } from "@bytemart/database";
 import type { Request, Response } from "express";
 import express from "express";
 import { PORT } from "./config";
-import { checkDatabaseConnection } from "@bytemart/database";
 
 const app = express();
 

@@ -1,3 +1,4 @@
-import { mysqlTable } from "drizzle-orm/mysql-core";
+import type { mysqlTable } from "drizzle-orm/mysql-core";
 
-export type TableType<T extends ReturnType<typeof mysqlTable>> = T["$inferSelect"]; 
+export type TableType<T extends ReturnType<typeof mysqlTable>> =
+	T["$inferSelect"];
