@@ -1,3 +1,4 @@
+import { createId } from "@paralleldrive/cuid2";
 import { relations } from "drizzle-orm";
 import {
 	index,
@@ -13,11 +14,13 @@ import { customers } from "./users";
 export const reviews = mysqlTable(
 	"reviews",
 	{
-		id: varchar("id", { length: 255 }).primaryKey(),
-		product_id: varchar("product_id", { length: 255 })
+		id: varchar("id", { length: 128 })
+			.$defaultFn(() => createId())
+			.primaryKey(),
+		product_id: varchar("product_id", { length: 128 })
 			.notNull()
 			.references(() => products.id),
-		customer_id: varchar("customer_id", { length: 255 })
+		customer_id: varchar("customer_id", { length: 128 })
 			.notNull()
 			.references(() => customers.id),
 		rating: int("rating").notNull(),
@@ -31,8 +34,10 @@ export const reviews = mysqlTable(
 );
 
 export const wishlists = mysqlTable("wishlists", {
-	id: varchar("id", { length: 255 }).primaryKey(),
-	customer_id: varchar("customer_id", { length: 255 })
+	id: varchar("id", { length: 128 })
+		.$defaultFn(() => createId())
+		.primaryKey(),
+	customer_id: varchar("customer_id", { length: 128 })
 		.notNull()
 		.references(() => customers.id),
 	created_at: timestamp("created_at").defaultNow(),
@@ -40,11 +45,13 @@ export const wishlists = mysqlTable("wishlists", {
 });
 
 export const wishlistItems = mysqlTable("wishlist_items", {
-	id: varchar("id", { length: 255 }).primaryKey(),
-	wishlist_id: varchar("wishlist_id", { length: 255 })
+	id: varchar("id", { length: 128 })
+		.$defaultFn(() => createId())
+		.primaryKey(),
+	wishlist_id: varchar("wishlist_id", { length: 128 })
 		.notNull()
 		.references(() => wishlists.id),
-	product_id: varchar("product_id", { length: 255 })
+	product_id: varchar("product_id", { length: 128 })
 		.notNull()
 		.references(() => products.id),
 	created_at: timestamp("created_at").defaultNow(),
@@ -52,8 +59,10 @@ export const wishlistItems = mysqlTable("wishlist_items", {
 });
 
 export const carts = mysqlTable("carts", {
-	id: varchar("id", { length: 255 }).primaryKey(),
-	customer_id: varchar("customer_id", { length: 255 })
+	id: varchar("id", { length: 128 })
+		.$defaultFn(() => createId())
+		.primaryKey(),
+	customer_id: varchar("customer_id", { length: 128 })
 		.notNull()
 		.references(() => customers.id),
 	created_at: timestamp("created_at").defaultNow(),
@@ -61,11 +70,13 @@ export const carts = mysqlTable("carts", {
 });
 
 export const cartItems = mysqlTable("cart_items", {
-	id: varchar("id", { length: 255 }).primaryKey(),
-	cart_id: varchar("cart_id", { length: 255 })
+	id: varchar("id", { length: 128 })
+		.$defaultFn(() => createId())
+		.primaryKey(),
+	cart_id: varchar("cart_id", { length: 128 })
 		.notNull()
 		.references(() => carts.id),
-	product_id: varchar("product_id", { length: 255 })
+	product_id: varchar("product_id", { length: 128 })
 		.notNull()
 		.references(() => products.id),
 	quantity: int("quantity").notNull(),

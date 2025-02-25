@@ -1,6 +1,11 @@
 import { drizzle } from "drizzle-orm/mysql2";
+import mysql from "mysql2/promise";
+import * as schema from "./schema";
 import { getEnvVar } from "./utils";
-export const db = drizzle({ connection: { uri: getEnvVar("DATABASE_URL") } });
+
+const connection = mysql.createPool(getEnvVar("DATABASE_URL"));
+
+export const db = drizzle(connection, { schema, mode: "default" });
 
 export async function checkDatabaseConnection() {
 	try {

@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "ddee063c-87e7-4b5e-8f8f-e85b2afbd6be",
+  "id": "c433bb0b-41d7-4948-859f-b8fbe715d09e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "addresses": {
@@ -9,14 +9,14 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "customer_id": {
           "name": "customer_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -73,17 +73,20 @@
         },
         "created_at": {
           "name": "created_at",
-          "type": "varchar(255)",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "varchar(255)",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": false,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
         }
       },
       "indexes": {},
@@ -118,21 +121,21 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "cart_id": {
           "name": "cart_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "product_id": {
           "name": "product_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -207,14 +210,14 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "customer_id": {
           "name": "customer_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -269,21 +272,21 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "product_id": {
           "name": "product_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "customer_id": {
           "name": "customer_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -373,21 +376,21 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "wishlist_id": {
           "name": "wishlist_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "product_id": {
           "name": "product_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -455,14 +458,14 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "customer_id": {
           "name": "customer_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -517,21 +520,21 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "user_id": {
           "name": "user_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "billing_address_id": {
           "name": "billing_address_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -545,10 +548,20 @@
         },
         "created_at": {
           "name": "created_at",
-          "type": "varchar(255)",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
         }
       },
       "indexes": {},
@@ -583,7 +596,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -620,7 +633,7 @@
           "name": "phone",
           "type": "varchar(20)",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "role": {
@@ -633,17 +646,20 @@
         },
         "created_at": {
           "name": "created_at",
-          "type": "varchar(255)",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "varchar(255)",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": false,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
         }
       },
       "indexes": {},
@@ -657,8 +673,8 @@
         }
       },
       "uniqueConstraints": {
-        "email_idx": {
-          "name": "email_idx",
+        "users_email_unique": {
+          "name": "users_email_unique",
           "columns": [
             "email"
           ]
@@ -671,7 +687,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -685,7 +701,7 @@
         },
         "parent_id": {
           "name": "parent_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -718,14 +734,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "name_idx": {
-          "name": "name_idx",
-          "columns": [
-            "name"
-          ]
-        }
-      },
+      "uniqueConstraints": {},
       "checkConstraint": {}
     },
     "products": {
@@ -733,7 +742,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -749,7 +758,7 @@
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "price": {
@@ -768,7 +777,7 @@
         },
         "category_id": {
           "name": "category_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -830,21 +839,21 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "order_id": {
           "name": "order_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "product_id": {
           "name": "product_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -926,14 +935,14 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "customer_id": {
           "name": "customer_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -954,7 +963,7 @@
         },
         "shipping_address_id": {
           "name": "shipping_address_id",
-          "type": "varchar(255)",
+          "type": "varchar(128)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -977,15 +986,7 @@
           "default": "(now())"
         }
       },
-      "indexes": {
-        "customer_idx": {
-          "name": "customer_idx",
-          "columns": [
-            "customer_id"
-          ],
-          "isUnique": false
-        }
-      },
+      "indexes": {},
       "foreignKeys": {
         "orders_customer_id_customers_id_fk": {
           "name": "orders_customer_id_customers_id_fk",
