@@ -1,0 +1,17 @@
+{
+  "name": "@bytemart/types",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@bytemart/typescript-config": "workspace:*"
+  }
+} 
