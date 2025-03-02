@@ -7,8 +7,9 @@ const envSchema = z.object({
 	SERVER_JWT_SECRET: z.string().default(""),
 	SERVER_ALLOWED_ORIGINS: z.string(),
 	CLIENT_URL: z.string().default("http://localhost:5173"),
+	UPLOADTHING_TOKEN: z.string(),
+	NODE_ENV: z.string().default("development"),
 });
-
 const envVars = envSchema.parse(process.env);
 
 export const PORT = envVars.SERVER_PORT;
@@ -16,3 +17,5 @@ export const DATABASE_URL = envVars.DATABASE_URL;
 export const JWT_SECRET = envVars.SERVER_JWT_SECRET;
 export const ALLOWED_ORIGINS = envVars.SERVER_ALLOWED_ORIGINS.split(",");
 export const CLIENT_URL = envVars.CLIENT_URL;
+export const UPLOADTHING_TOKEN = envVars.UPLOADTHING_TOKEN;
+export const NODE_ENV = envVars.NODE_ENV;

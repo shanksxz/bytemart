@@ -1,5 +1,5 @@
 {
-    "extend": "@repo/typscript-config/base.json",
+    "extends": "@bytemart/typescript-config/base.json",
     "include": [
         "src/**/*.ts",
         "src/types/*.d.ts"
@@ -9,8 +9,6 @@
         "rootDir": "src",
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "module": "NodeNext",
-        "moduleResolution" : "NodeNext",
     },
     "exclude": [
         "node_modules",

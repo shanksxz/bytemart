@@ -1,5 +1,5 @@
 import { categories, db, eq, products } from "@bytemart/database";
-import { ProductSchema } from "@bytemart/types";
+import { ProductSchema, CategorySchema } from "@bytemart/types";
 import type { Request, Response } from "express";
 import { handleError } from "../utils";
 import ApiError from "../utils/api-error";
@@ -12,13 +12,14 @@ export const createProduct = async (req: Request, res: Response) => {
 
 		const validatedData = ProductSchema.parse(req.body);
 
+
 		const product = await db.insert(products).values({
 			name: validatedData.name,
-			description: validatedData.description,
-			price: validatedData.price.toString(),
+			description: validatedData.description || "",
+			price: String(validatedData.price) || "",
 			stock_quantity: validatedData.stockQuantity,
-			//   category_id: validatedData.categoryId || null,
-			//   image_url: validatedData.imageUrl || "",
+			category_id: validatedData.categoryId || null,
+			image_url: validatedData.imageUrl || "",
 		});
 
 		res.status(201).json({
@@ -50,7 +51,7 @@ export const getProducts = async (req: Request, res: Response) => {
 export const getProduct = async (req: Request, res: Response) => {
 	try {
 		const product = await db.query.products.findFirst({
-			where: eq(products.id, req.params.id),
+			where: eq(products.id, req.params.id as string),
 			with: {
 				category: true,
 			},
@@ -84,8 +85,10 @@ export const updateProduct = async (req: Request, res: Response) => {
 				description: validatedData.description,
 				price: validatedData.price?.toString(),
 				stock_quantity: validatedData.stockQuantity,
+				category_id: validatedData.categoryId,
+				image_url: validatedData.imageUrl,
 			})
-			.where(eq(products.id, req.params.id));
+			.where(eq(products.id, req.params.id as string));
 
 		res.json({
 			success: true,
@@ -102,7 +105,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
 			throw ApiError.forbidden("Only admins can delete products");
 		}
 
-		await db.delete(products).where(eq(products.id, req.params.id));
+		await db.delete(products).where(eq(products.id, req.params.id as string));
 
 		res.json({
 			success: true,
@@ -113,35 +116,3 @@ export const deleteProduct = async (req: Request, res: Response) => {
 	}
 };
 
-export const createCategory = async (req: Request, res: Response) => {
-	try {
-		if (req.user.role !== "admin") {
-			throw ApiError.forbidden("Only admins can create categories");
-		}
-
-		const category = await db.insert(categories).values({
-			name: req.body.name,
-			//   parent_id: req.body.parentId,
-		});
-
-		res.status(201).json({
-			success: true,
-			data: category,
-		});
-	} catch (error) {
-		handleError(error, res);
-	}
-};
-
-export const getCategories = async (req: Request, res: Response) => {
-	try {
-		const allCategories = await db.query.categories.findMany();
-
-		res.json({
-			success: true,
-			data: allCategories,
-		});
-	} catch (error) {
-		handleError(error, res);
-	}
-};

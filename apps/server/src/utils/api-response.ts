@@ -39,15 +39,15 @@ export function sendSuccess<T>(
 	});
 }
 
-export function sendError(
-	res: Response,
-	error: string,
-	status: HttpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR,
-	details?: unknown,
-): void {
-	res.status(status).json({
-		success: false,
-		error,
-		...(details && { details }),
-	});
-}
+// export function sendError(
+// 	res: Response,
+// 	error: string,
+// 	status: HttpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR,
+// 	details?: unknown,
+// ): void {
+// 	res.status(status).json({
+// 		success: false,
+// 		error,
+// 		...(details && { details }),
+// 	});
+// }
