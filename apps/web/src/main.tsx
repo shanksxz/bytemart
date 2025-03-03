@@ -1,15 +1,28 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { AuthContextProvider, useAuth } from "./hooks/use-auth";
 import { routeTree } from "./routeTree.gen";
-import { AuthContextProvider } from "./hooks/use-auth";
 const router = createRouter({ routeTree });
 
 declare module "@tanstack/react-router" {
 	interface Register {
 		router: typeof router;
 	}
+}
+
+function InnerApp() {
+	const auth = useAuth();
+	return <RouterProvider router={router} context={{ auth }} />;
+}
+
+function App() {
+	return (
+		<AuthContextProvider>
+			<InnerApp />
+		</AuthContextProvider>
+	);
 }
 
 const queryClient = new QueryClient();
@@ -19,9 +32,7 @@ if (!rootElement.innerHTML) {
 	const root = createRoot(rootElement);
 	root.render(
 		<QueryClientProvider client={queryClient}>
-			<AuthContextProvider>
-				<RouterProvider router={router} />
-			</AuthContextProvider>
+			<App />
 		</QueryClientProvider>,
 	);
 }

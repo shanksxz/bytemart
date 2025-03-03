@@ -1,9 +1,9 @@
+import { Spinner } from "@/components/layout/spinner";
 import { api } from "@/utils/api-client";
 import type { User } from "@bytemart/types";
 import { createContext, use, useEffect, useState } from "react";
-import { Spinner } from "@/components/layout/spinner";
 
-type AuthContextType = {
+export type AuthContextType = {
 	user: User | null;
 	status: "loading" | "error" | "success";
 	isAuthenticated: boolean;

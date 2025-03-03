@@ -1,6 +1,6 @@
 import { api } from "@/utils/api-client";
-import type { LoginInput } from "@bytemart/types";
 import type { MutationConfig } from "@/utils/react-query";
+import type { LoginInput } from "@bytemart/types";
 import { useMutation } from "@tanstack/react-query";
 
 export const signin = ({ user }: { user: LoginInput }) => {

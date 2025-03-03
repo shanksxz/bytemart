@@ -1,14 +1,14 @@
-import type React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "@tanstack/react-router";
-import { useForm } from "react-hook-form";
+import { cn } from "@/lib/utils";
+import { type SignupInput, SignupSchema } from "@bytemart/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignupSchema, type SignupInput } from "@bytemart/types";
-import { useSignup } from "../api/signup";
+import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
+import type React from "react";
+import { useForm } from "react-hook-form";
+import { useSignup } from "../api/signup";
 
 export function SignupForm({
 	className,

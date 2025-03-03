@@ -13,8 +13,14 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as SignupImport } from './routes/signup'
 import { Route as SigninImport } from './routes/signin'
+import { Route as ExploreImport } from './routes/explore'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as WishlistIndexImport } from './routes/wishlist/index'
+import { Route as CheckoutIndexImport } from './routes/checkout/index'
+import { Route as CartIndexImport } from './routes/cart/index'
+import { Route as AccountIndexImport } from './routes/account/index'
+import { Route as ProductProductIdIndexImport } from './routes/product/$productId/index'
 
 // Create/Update Routes
 
@@ -30,6 +36,12 @@ const SigninRoute = SigninImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ExploreRoute = ExploreImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AboutRoute = AboutImport.update({
   id: '/about',
   path: '/about',
@@ -39,6 +51,36 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WishlistIndexRoute = WishlistIndexImport.update({
+  id: '/wishlist/',
+  path: '/wishlist/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CheckoutIndexRoute = CheckoutIndexImport.update({
+  id: '/checkout/',
+  path: '/checkout/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CartIndexRoute = CartIndexImport.update({
+  id: '/cart/',
+  path: '/cart/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AccountIndexRoute = AccountIndexImport.update({
+  id: '/account/',
+  path: '/account/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProductProductIdIndexRoute = ProductProductIdIndexImport.update({
+  id: '/product/$productId/',
+  path: '/product/$productId/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreImport
+      parentRoute: typeof rootRoute
+    }
     '/signin': {
       id: '/signin'
       path: '/signin'
@@ -74,6 +123,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupImport
       parentRoute: typeof rootRoute
     }
+    '/account/': {
+      id: '/account/'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/cart/': {
+      id: '/cart/'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/checkout/': {
+      id: '/checkout/'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/wishlist/': {
+      id: '/wishlist/'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/product/$productId/': {
+      id: '/product/$productId/'
+      path: '/product/$productId'
+      fullPath: '/product/$productId'
+      preLoaderRoute: typeof ProductProductIdIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -82,46 +166,107 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/explore': typeof ExploreRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/account': typeof AccountIndexRoute
+  '/cart': typeof CartIndexRoute
+  '/checkout': typeof CheckoutIndexRoute
+  '/wishlist': typeof WishlistIndexRoute
+  '/product/$productId': typeof ProductProductIdIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/explore': typeof ExploreRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/account': typeof AccountIndexRoute
+  '/cart': typeof CartIndexRoute
+  '/checkout': typeof CheckoutIndexRoute
+  '/wishlist': typeof WishlistIndexRoute
+  '/product/$productId': typeof ProductProductIdIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/explore': typeof ExploreRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/account/': typeof AccountIndexRoute
+  '/cart/': typeof CartIndexRoute
+  '/checkout/': typeof CheckoutIndexRoute
+  '/wishlist/': typeof WishlistIndexRoute
+  '/product/$productId/': typeof ProductProductIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/signin' | '/signup'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/explore'
+    | '/signin'
+    | '/signup'
+    | '/account'
+    | '/cart'
+    | '/checkout'
+    | '/wishlist'
+    | '/product/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/signin' | '/signup'
-  id: '__root__' | '/' | '/about' | '/signin' | '/signup'
+  to:
+    | '/'
+    | '/about'
+    | '/explore'
+    | '/signin'
+    | '/signup'
+    | '/account'
+    | '/cart'
+    | '/checkout'
+    | '/wishlist'
+    | '/product/$productId'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/explore'
+    | '/signin'
+    | '/signup'
+    | '/account/'
+    | '/cart/'
+    | '/checkout/'
+    | '/wishlist/'
+    | '/product/$productId/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ExploreRoute: typeof ExploreRoute
   SigninRoute: typeof SigninRoute
   SignupRoute: typeof SignupRoute
+  AccountIndexRoute: typeof AccountIndexRoute
+  CartIndexRoute: typeof CartIndexRoute
+  CheckoutIndexRoute: typeof CheckoutIndexRoute
+  WishlistIndexRoute: typeof WishlistIndexRoute
+  ProductProductIdIndexRoute: typeof ProductProductIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ExploreRoute: ExploreRoute,
   SigninRoute: SigninRoute,
   SignupRoute: SignupRoute,
+  AccountIndexRoute: AccountIndexRoute,
+  CartIndexRoute: CartIndexRoute,
+  CheckoutIndexRoute: CheckoutIndexRoute,
+  WishlistIndexRoute: WishlistIndexRoute,
+  ProductProductIdIndexRoute: ProductProductIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -136,8 +281,14 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/explore",
         "/signin",
-        "/signup"
+        "/signup",
+        "/account/",
+        "/cart/",
+        "/checkout/",
+        "/wishlist/",
+        "/product/$productId/"
       ]
     },
     "/": {
@@ -146,11 +297,29 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
+    "/explore": {
+      "filePath": "explore.tsx"
+    },
     "/signin": {
       "filePath": "signin.tsx"
     },
     "/signup": {
       "filePath": "signup.tsx"
+    },
+    "/account/": {
+      "filePath": "account/index.tsx"
+    },
+    "/cart/": {
+      "filePath": "cart/index.tsx"
+    },
+    "/checkout/": {
+      "filePath": "checkout/index.tsx"
+    },
+    "/wishlist/": {
+      "filePath": "wishlist/index.tsx"
+    },
+    "/product/$productId/": {
+      "filePath": "product/$productId/index.tsx"
     }
   }
 }
